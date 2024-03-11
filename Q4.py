@@ -1,20 +1,22 @@
-def transpose_matrix(matrix):
-    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+def transpose(A):
+    # Iterate through the rows of matrix A
+    for i in range(len(A)):
+        # Iterate through the columns of matrix A
+        for j in range(len(A)):
+            # Check if the current element's row index is greater than its column index
+            if i > j:
+                # Swap the elements at positions (i, j) and (j, i)
+                temp = A[i][j]
+                A[i][j] = A[j][i]
+                A[j][i] = temp
+    
+    # Print the transposed matrix
+    print(A)
 
-# Get user input for the matrix
-rows = int(input("Enter the number of rows in the matrix: "))
-cols = int(input("Enter the number of columns in the matrix: "))
+# Define matrix 
+X = [[1, 7, 3],
+     [3, 5, 6],
+     [6, 8, 9]]
 
-matrix = [[int(input()) for _ in range(cols)] for _ in range(rows)]
-
-# Find the transpose of the matrix
-transposed_matrix = transpose_matrix(matrix)
-
-# Display the result
-print("Original Matrix:")
-for row in matrix:
-    print(row)
-
-print("\nTransposed Matrix:")
-for row in transposed_matrix:
-    print(row)
+# Call the transpose function
+transpose(X)
