@@ -1,20 +1,34 @@
-def transpose_matrix(matrix):
-    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+def matrix_multiply(A, B):
+    # Get the number of rows and columns of matrices A and B
+    rows_A = len(A)
+    cols_A = len(A[0])
+    rows_B = len(B)
+    cols_B = len(B[0])
+    
+    # Check if the number of columns in A equals the number of rows in B for matrix multiplication
+    if cols_A == rows_B:
+        # Initialize the resulting matrix C with zeros
+        C = [[0 for _ in range(cols_B)] for _ in range(rows_A)]
+        
+        # Perform matrix multiplication
+        for i in range(rows_A):
+            for j in range(cols_B):
+                for k in range(cols_A):
+                    # Update each element of C
+                    C[i][j] += A[i][k] * B[k][j]
+        
+        # Print the resulting matrix C
+        print(C)
+    else:
+        print("Cannot multiply matrices. Number of columns in matrix A must be equal to the number of rows in matrix B.")
 
-# Get user input for the matrix
-rows = int(input("Enter the number of rows in the matrix: "))
-cols = int(input("Enter the number of columns in the matrix: "))
+# Define matrices X and Y
+X = [[1, 2, 3],
+     [4, 5, 6],
+     [7, 8, 9]]
 
-matrix = [[int(input()) for _ in range(cols)] for _ in range(rows)]
+Y = [[1, 2, 3],
+     [4, 5, 6],
+     [7, 8, 9]]
 
-# Find the transpose of the matrix
-transposed_matrix = transpose_matrix(matrix)
-
-# Display the result
-print("Original Matrix:")
-for row in matrix:
-    print(row)
-
-print("\nTransposed Matrix:")
-for row in transposed_matrix:
-    print(row)
+matrix_multiply(X, Y)
